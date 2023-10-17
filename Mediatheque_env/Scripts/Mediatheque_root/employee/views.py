@@ -1,9 +1,10 @@
-from django.http import HttpResponse
-from django.shortcuts import render
 
 # Create your views here.
+from django.http import HttpResponse
+from django.template import loader
 
 
 def employee(request):
-    return HttpResponse("Test views.py")
+    template = loader.get_template('employe.html')
+    return HttpResponse(template.render())
 
