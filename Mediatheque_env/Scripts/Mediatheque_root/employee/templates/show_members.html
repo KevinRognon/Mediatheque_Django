@@ -13,7 +13,10 @@
 
     <ul>
         {% for member in members %}
-            <li>{{ member.firstname }} - {{ member.lastname }}</li>
+        <div style="display: flex; gap: .4rem;">
+            <li style="list-style: none;">{{ member.firstname }} {{ member.lastname }} | </li>
+            <a href="#">Gestion</a>
+        </div>
         {% endfor %}
     </ul>
 </body>

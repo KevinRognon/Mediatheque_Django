@@ -7,13 +7,6 @@
 <body>
     <h1>Bienvenue sur l'application employé. </h1>
     <p>Vous  trouverez, ici, toutes vos commandes pour la gestion de la médiathèque. En cas de problème, remontez l'information au développeur logiciel.</p>
-    <p>Voici la liste des employés de la médiathèque:</p>
-
-    <ul>
-        {% for employe in employees %}
-            <li>{{ employe.firstname }} - {{ employe.lastname }}</li>
-        {% endfor %}
-    </ul>
 
 
     <p>Pour voir la liste des membres et agir dessus, suivez ce lien : <a href="/employees/show-members">administration des membres</a></p>

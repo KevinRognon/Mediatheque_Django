@@ -21,3 +21,7 @@ def show_members(request):
         'members': members
     }
     return HttpResponse(template.render(context, request))
+
+
+def show_medias(request):
+    pass
