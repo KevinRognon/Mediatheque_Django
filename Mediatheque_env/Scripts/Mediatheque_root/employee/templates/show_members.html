@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu employé</title>
+</head>
+<body>
+
+    <p>Voici la liste des membres de la médiathèque:</p>
+
+    <ul>
+        {% for member in members %}
+            <li>{{ member.firstname }} - {{ member.lastname }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
