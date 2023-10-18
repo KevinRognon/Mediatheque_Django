@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'member',
     'employee',
+    'Mediatheque_root'
 ]
 
 MIDDLEWARE = [

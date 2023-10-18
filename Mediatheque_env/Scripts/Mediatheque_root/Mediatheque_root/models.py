@@ -4,7 +4,7 @@ from django.db import models
 class Book(models.Model):
     name = models.CharField(max_length=100)
     author = models.CharField(max_length=60)
-    dateBorrow = models.DateField(null=False)
+    dateBorrow = models.DateField(null=True)
     available = models.BooleanField(null=False)
     borrower = models.CharField(max_length=60)
 
@@ -29,8 +29,3 @@ class BoardGame(models.Model):
     name = models.CharField(max_length=100)
     creator = models.CharField(max_length=60)
 
-
-class Borrower(models.Model):
-    firstname = models.CharField(max_length=60)
-    lastname = models.CharField(max_length=60)
-    bloqued = models.BooleanField(null=False)

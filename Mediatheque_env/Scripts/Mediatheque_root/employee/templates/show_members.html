@@ -6,6 +6,9 @@
 </head>
 <body>
 
+    <a href="/employees">Retourner au menu employés</a>
+    <a href="/employees/create-member">Créer un membre</a>
+
     <p>Voici la liste des membres de la médiathèque:</p>
 
 
@@ -14,8 +17,16 @@
     <ul>
         {% for member in members %}
         <div style="display: flex; gap: .4rem;">
-            <li style="list-style: none;">{{ member.firstname }} {{ member.lastname }} | </li>
+            {% if member.bloque %}
+            <li style="list-style: none; color: red;">{{ member.firstname }} {{ member.lastname }} | </li>
+            {% else %}
+            <li style="list-style: none; color: green;">{{ member.firstname }} {{ member.lastname }} | </li>
+            {% endif %}
             <a href="#">Gestion</a>
+            <form method="post" action="{% url 'delete_member' member.id %}">
+                {% csrf_token %}
+                <input type="submit" value="X">
+            </form>
         </div>
         {% endfor %}
     </ul>
