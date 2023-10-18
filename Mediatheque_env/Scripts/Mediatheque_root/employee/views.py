@@ -1,9 +1,8 @@
-
 # Create your views here.
 from django.http import HttpResponse
 from django.template import loader
 from .models import Employe
-from 
+from member.models import Member
 
 
 def employee(request):
@@ -15,6 +14,14 @@ def employee(request):
     return HttpResponse(template.render(context, request))
 
 
-
 def show_members(request):
     members = Member.objects.all().values()
+    template = loader.get_template('show_members.html')
+    context = {
+        'members': members
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def show_medias(request):
+    pass
