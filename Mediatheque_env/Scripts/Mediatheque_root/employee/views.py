@@ -43,5 +43,5 @@ def show_medias(request):
 
 def create_member(request):
     template = loader.get_template('create_member.html')
-    return HttpResponse(template.render)
+    return HttpResponse(template.render())
 
