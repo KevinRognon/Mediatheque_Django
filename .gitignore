@@ -3,3 +3,5 @@ Mediatheque_env/Scripts/Mediatheque_root/Mediatheque_root/__pycache__/urls.cpyth
 .DS_Store
 Mediatheque_env/.DS_Store
 Mediatheque_env/Scripts/.DS_Store
+.idea/Mediatheque_Django.iml
+.idea/misc.xml
