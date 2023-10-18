@@ -1,2 +1,5 @@
 
 Mediatheque_env/Scripts/Mediatheque_root/Mediatheque_root/__pycache__/urls.cpython-310.pyc
+.DS_Store
+Mediatheque_env/.DS_Store
+Mediatheque_env/Scripts/.DS_Store
