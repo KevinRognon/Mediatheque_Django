@@ -7,12 +7,16 @@
 <body>
 <a href="/employees/">Retour au menu employés</a>
 <h1>Formulaire de création d'un membre</h1>
-<form>
-  <label for="prenom">Prénom:</label>
-  <input type="text" id="prenom">
+<form method="post" action="{% url 'create_member' %}">
+    {% csrf_token %}
+    <label for="prenom">Prénom:</label>
+    <input type="text" id="prenom" name="first_name">
 
-  <label for="lastname">Nom de famille:</label>
-  <input type="text" id="lastname">
+    <label for="lastname">Nom de famille:</label>
+    <input type="text" id="lastname" name="last_name">
+
+    <input type="submit" value="Créer">
+
 </form>
 
 </body>
