@@ -1,12 +1,9 @@
-
 # Create your views here.
 from django.http import HttpResponse
 from django.template import loader
 from .models import Employe
 from member.models import Member
 from Mediatheque_root.models import Book, Cd, Dvd, BoardGame
-
-
 
 
 def employee(request):
@@ -16,7 +13,6 @@ def employee(request):
         'employees': employees
     }
     return HttpResponse(template.render(context, request))
-
 
 
 def show_members(request):

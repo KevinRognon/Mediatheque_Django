@@ -28,3 +28,4 @@ class Dvd(models.Model):
 class BoardGame(models.Model):
     name = models.CharField(max_length=100)
     creator = models.CharField(max_length=60)
+
