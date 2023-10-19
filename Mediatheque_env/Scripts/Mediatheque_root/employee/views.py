@@ -26,6 +26,22 @@ def show_members(request):
     return HttpResponse(template.render(context, request))
 
 
+def show_details(request, id):
+    member = Member.objects.get(id=id)
+    template = loader.get_template('detail.html')
+    context = {
+        'member': member
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def toggle_bloque(request, id):
+    member = Member.objects.get(pk=id)
+    member.bloque = not member.bloque
+    member.save()
+    return redirect('show_members')
+
+
 def show_medias(request):
     books = Book.objects.all().values()
     cds = Cd.objects.all().values()
@@ -68,7 +84,6 @@ def create_member(request):
 
 def delete_member(request, member_id):
     member = Member.objects.get(pk=member_id)
-
 
     if request.method == 'POST':
         member.delete()

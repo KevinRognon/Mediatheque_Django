@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{ member.firstname }} {{ member.lastname }}</title>
 </head>
 <body>
+
+    <h1>Fiche détail de : {{ member.firstname }} {{ member.lastname }}</h1>
+    <form method="post" action="{% url 'toggle_bloque' member.id %}">
+        {% csrf_token %}
+        <input type="submit" value="En defaut/En règle">
+
+    </form>
+
+    {% if not member.bloque %}
+        <h3 style="color: white; background-color: green;">En règle</h3>
+    {% else %}
+        <h3 style="color: white; background-color: red;">Defaut de retour.</h3>
+    {% endif %}
 
 </body>
 </html>
