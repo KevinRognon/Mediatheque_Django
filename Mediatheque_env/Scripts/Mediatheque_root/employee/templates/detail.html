@@ -6,7 +6,10 @@
 </head>
 <body>
 
-    <h1>Fiche détail de : {{ member.firstname }} {{ member.lastname }}</h1>
+<a href="/employees">Retour au menu employés</a>
+<a href="/employees/show-members">Retour à la liste des membres</a>
+
+<h1>Fiche détail de : {{ member.firstname }} {{ member.lastname }}</h1>
     <form method="post" action="{% url 'toggle_bloque' member.id %}">
         {% csrf_token %}
         <input type="submit" value="En defaut/En règle">
