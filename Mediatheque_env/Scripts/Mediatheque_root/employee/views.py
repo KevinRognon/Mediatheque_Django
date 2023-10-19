@@ -39,7 +39,7 @@ def toggle_bloque(request, id):
     member = Member.objects.get(pk=id)
     member.bloque = not member.bloque
     member.save()
-    return redirect('show_members')
+    return redirect('show_details', id)
 
 
 def show_medias(request):
