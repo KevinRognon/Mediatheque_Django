@@ -1,7 +1,8 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.template import loader
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
+from .forms import MemberForm
 from .models import Employe
 from member.models import Member
 from Mediatheque_root.models import Book, Cd, Dvd, BoardGame
@@ -59,5 +60,34 @@ def show_medias(request):
 
 
 def create_member(request):
-    template = loader.get_template('create_member.html')
-    return HttpResponse(template.render())
+    template = 'create_member.html'
+
+    if request.method == 'POST':
+        form = MemberForm(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+
+            new_member = Member(firstname=first_name, lastname=last_name)
+            new_member.save()
+
+            return redirect('show_members')
+
+    else:
+        form = MemberForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, template, context)
+
+
+def delete_member(request, member_id):
+    member = Member.objects.get(pk=member_id)
+
+
+    if request.method == 'POST':
+        member.delete()
+        return redirect('show_members')
+
+    return HttpResponse('Méthode non autorisée.')

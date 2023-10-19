@@ -22,7 +22,11 @@
             {% else %}
             <li style="list-style: none; color: green;">{{ member.firstname }} {{ member.lastname }} | </li>
             {% endif %}
-            <a href="/employees/detail/{{member.id}}">Gestion</a>
+            <a href="#">Gestion</a>
+            <form method="post" action="{% url 'delete_member' member.id %}">
+                {% csrf_token %}
+                <input type="submit" value="X">
+            </form>
         </div>
         {% endfor %}
     </ul>
