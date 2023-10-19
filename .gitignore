@@ -24,3 +24,5 @@ Mediatheque_env/Scripts/Mediatheque_root/employee/__pycache__/forms.cpython-310.
 .idea/misc.xml
 .idea/Mediatheque_Django.iml
 *.pyc
+*.xml
+*.iml
