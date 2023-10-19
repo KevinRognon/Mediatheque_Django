@@ -85,7 +85,6 @@ def create_member(request):
 def delete_member(request, member_id):
     member = Member.objects.get(pk=member_id)
 
-
     if request.method == 'POST':
         member.delete()
         return redirect('show_members')
