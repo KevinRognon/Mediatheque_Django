@@ -17,13 +17,12 @@
     <ul>
         {% for member in members %}
         <div style="display: flex; gap: .4rem;">
-            {% if member.bloque %}
+            {% if member.bloque == True %}
             <li style="list-style: none; color: red;">{{ member.firstname }} {{ member.lastname }} | </li>
-            <a href="#">Gestion</a>
             {% else %}
             <li style="list-style: none; color: green;">{{ member.firstname }} {{ member.lastname }} | </li>
-            <a href="#">Gestion</a>
             {% endif %}
+            <a href="/employees/detail/{{member.id}}">Gestion</a>
         </div>
         {% endfor %}
     </ul>

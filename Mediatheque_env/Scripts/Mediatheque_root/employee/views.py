@@ -1,6 +1,7 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import redirect
 from .models import Employe
 from member.models import Member
 from Mediatheque_root.models import Book, Cd, Dvd, BoardGame
@@ -24,6 +25,22 @@ def show_members(request):
     return HttpResponse(template.render(context, request))
 
 
+def show_details(request, id):
+    member = Member.objects.get(id=id)
+    template = loader.get_template('detail.html')
+    context = {
+        'member': member
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def toggle_bloque(request, id):
+    member = Member.objects.get(pk=id)
+    member.bloque = not member.bloque
+    member.save()
+    return redirect('show_members')
+
+
 def show_medias(request):
     books = Book.objects.all().values()
     cds = Cd.objects.all().values()
@@ -44,4 +61,3 @@ def show_medias(request):
 def create_member(request):
     template = loader.get_template('create_member.html')
     return HttpResponse(template.render())
-
