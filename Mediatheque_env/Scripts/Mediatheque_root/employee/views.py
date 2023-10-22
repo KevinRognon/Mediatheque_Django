@@ -36,12 +36,6 @@ def show_details(request, id):
     return HttpResponse(template.render(context, request))
 
 
-def toggle_bloque(request, id):
-    member = Member.objects.get(pk=id)
-    member.bloque = not member.bloque
-    member.save()
-    return redirect('show_details', id)
-
 
 def show_medias(request):
     books = Book.objects.all().values()
@@ -58,6 +52,13 @@ def show_medias(request):
     }
 
     return HttpResponse(template.render(context, request))
+
+
+def add_media(request):
+    template = loader.get_template('add_media.html')
+    return HttpResponse(template.render())
+
+
 
 
 def create_member(request):

@@ -45,3 +45,4 @@ Mediatheque_env/Scripts/Mediatheque_root/employee/__pycache__/urls.cpython-310.p
 Mediatheque_env/Scripts/Mediatheque_root/employee/__pycache__/views.cpython-310.pyc
 Mediatheque_env/Scripts/Mediatheque_root/Mediatheque_root/__pycache__/settings.cpython-311.pyc
 Mediatheque_env/Scripts/Mediatheque_root/member/__pycache__/models.cpython-310.pyc
+*.pyc
