@@ -29,6 +29,7 @@ def show_members(request):
 def show_details(request, id):
     member = Member.objects.get(id=id)
     template = loader.get_template('detail.html')
+    member.check_borrowed_nb();
     context = {
         'member': member
     }
