@@ -21,9 +21,7 @@
             {% else %}
             <li style="list-style: none; color: green;">{{ member.firstname }} {{ member.lastname }} | Nombre d'emprunt en cours: {{member.nb_borrowed}} | </li>
             {% endif %}
-
-
-            <a href="/employees/detail/{{ member.id }}">Gestion</a>
+            
             <form method="post" action="{% url 'delete_member' member.id %}">
                 {% csrf_token %}
                 <input type="submit" value="X">
