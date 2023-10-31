@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 
@@ -11,15 +12,11 @@ class Member(models.Model):
 
     def check_borrowed_nb(self):
 
-
-        match self.nb_borrowed:
-            case 2 | 1:
-                self.bloque = False
-            case 3:
-                self.bloque = True
-            case _:
-                self.bloque = False
+        if self.nb_borrowed == 1 or self.nb_borrowed == 2:
+            self.bloque = False
+        elif self.nb_borrowed == 3:
+            self.bloque = True
+        else:
+            self.bloque = False
 
         print(self.bloque)
-
-
