@@ -19,6 +19,10 @@
 	{% elif type_media == "dvd" %}
 		<p>Nom du film: <strong>{{ media.name }}</strong> </p>
 		<p>Nom du réalisateur: <strong>{{ media.realisator }}</strong></p>
+
+	{% elif type_media == "bordgame" %}
+		<p>Nom du jeu: <strong>{{ media.name }}</strong> </p>
+		<p>Nom du créateur: <strong>{{ media.creator }}</strong></p>
 	{% endif %}
 
 </body>

@@ -83,6 +83,9 @@ def media_detail(request, media_type, media_id):
     elif media_type == "dvd":
         media = Dvd.objects.get(id=media_id)
         type_media = media_type
+    elif media_type == "boardgame":
+        media = BoardGame.objects.get(id=media_id)
+        type_media = media_type
 
     else:
         return HttpResponse("Type de média non reconnu.", status=400)
@@ -94,8 +97,24 @@ def media_detail(request, media_type, media_id):
 
     return HttpResponse(template.render(context, request))
 
+def media_del(request, media_type, media_id):
 
+    if media_type == "book":
+        media = Book.objects.get(id=media_id)
+        media.delete()
+    elif media_type == "cd":
+        media = Cd.objects.get(id=media_id)
+        media.delete()
+    elif media_type == "dvd":
+        media = Dvd.objects.get(id=media_id)
+        media.delete()
+    elif media_type == "boardgame":
+        media = BoardGame.objects.get(id=media_id)
+        media.delete()
+    else:
+        return HttpResponse("Type de média non reconnu.", status=400)
 
+    return redirect("/employees/show-medias")
 
 def create_member(request):
     template = 'create_member.html'
