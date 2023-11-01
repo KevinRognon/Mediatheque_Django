@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Listes des médias</title>
+</head>
+<body>
+
+<h2>Liste des livres en "stock":</h2>
+<ul>
+    {% for book in books %}
+        <li>{{book.name}}</li>
+    {% endfor %}
+</ul>
+
+<h2>Liste des cd en "stock":</h2>
+<ul>
+    {% for cd in cds %}
+        <li>{{cd.name}}</li>
+    {% endfor %}
+</ul>
+
+<h2>Liste des dvd en "stock":</h2>
+<ul>
+    {% for dvd in dvds %}
+        <li>{{dvd.name}}</li>
+    {% endfor %}
+</ul>
+
+<h2>Liste des jeux de plateau en "stock":</h2>
+<ul>
+    {% for boardgame in boardgames %}
+        <li>{{boardgame.name}}</li>
+    {% endfor %}
+</ul>
+
+
+</body>
+</html>
