@@ -6,6 +6,7 @@ from .forms import MemberForm
 from .models import Employe
 from member.models import Member
 from Mediatheque_root.models import Book, Cd, Dvd, BoardGame
+from datetime import datetime
 
 
 def employee(request):
@@ -117,6 +118,30 @@ def media_del(request, media_type, media_id):
         return HttpResponse("Type de média non reconnu.", status=400)
 
     return redirect("/employees/show-medias")
+
+
+def borrow_media(request, media_type, media_id):
+    if media_type == "book":
+        media = Book.objects.get(id=media_id)
+    elif media_type == "cd":
+        media = Cd.objects.get(id=media_id)
+    elif media_type == "dvd":
+        media = Dvd.objects.get(id=media_id)
+
+#     Vérifier car le formulaire n'est pas visible si le média n'est pas disponible.
+#     if not media.available:
+#         return HttpResponse("Ce média est déjà emprunté")
+
+
+    member_id = request.POST.get('selected_member')
+    selected_member = Member.objects.get(id=member_id)
+    media.available = False
+    media.borrower = selected_member
+    media.dateBorrow = datetime.date.today()
+    media.save()
+    return redirect('/employees/show-medias')
+
+
 
 def create_member(request):
     template = 'create_member.html'

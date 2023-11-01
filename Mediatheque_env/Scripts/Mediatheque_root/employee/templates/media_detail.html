@@ -21,6 +21,22 @@
 			<p style="background-color: red; color: white; display: inline; padding: 10px;">Le média n'est pas disponible</p>
 		{% endif %}
 
+		{% if media.available %}
+			<form style="margin-top: 30px;" method='post' action="{% url 'borrow_media' 'book' media.id %}">
+				{% csrf_token %}
+				<select name="selected_member">
+					{% for member in members %}
+						{% if member.bloque %}
+							<option disabled value={{member.id}}>{{ member.firstname }} {{ member.lastname }} - Emprunt: {{ member.nb_borrowed }}</option>
+						{% else %}
+							<option name="choix_membre" value={{member.id}}>{{ member.firstname }} {{ member.lastname }} - Emprunt: {{ member.nb_borrowed }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+				<button type="submit">Emprunter</button>
+			</form>
+		{% endif %}
+
 	{% elif type_media == "cd" %}
 
 
@@ -30,6 +46,22 @@
 			<p style="background-color: green; color: white; display: inline; padding: 10px;">Le média est disponible</p>
 		{% elif not media.available %}
 			<p style="background-color: red; color: white; display: inline; padding: 10px;">Le média n'est pas disponible</p>
+		{% endif %}
+
+		{% if media.available %}
+			<form style="margin-top: 30px;" method='post' action="{% url 'borrow_media' 'cd' media.id %}">
+				{% csrf_token %}
+				<select name="selected_member">
+					{% for member in members %}
+						{% if member.bloque %}
+							<option disabled value={{member.id}}>{{ member.firstname }} {{ member.lastname }} - Emprunt: {{ member.nb_borrowed }}</option>
+						{% else %}
+							<option name="choix_membre" value={{member.id}}>{{ member.firstname }} {{ member.lastname }} - Emprunt: {{ member.nb_borrowed }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+				<button type="submit">Emprunter</button>
+			</form>
 		{% endif %}
 
 	{% elif type_media == "dvd" %}
@@ -43,6 +75,22 @@
 			<p style="background-color: red; color: white; display: inline; padding: 10px;">Le média n'est pas disponible</p>
 		{% endif %}
 
+		{% if media.available %}
+			<form style="margin-top: 30px;" method='post' action="{% url 'borrow_media' 'dvd' media.id %}">
+				{% csrf_token %}
+				<select name="selected_member">
+					{% for member in members %}
+						{% if member.bloque %}
+							<option disabled value={{member.id}}>{{ member.firstname }} {{ member.lastname }} - Emprunt: {{ member.nb_borrowed }}</option>
+						{% else %}
+							<option name="choix_membre" value={{member.id}}>{{ member.firstname }} {{ member.lastname }} - Emprunt: {{ member.nb_borrowed }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+				<button type="submit">Emprunter</button>
+			</form>
+		{% endif %}
+
 	{% elif type_media == "boardgame" %}
 
 
@@ -51,24 +99,5 @@
 
 
 	{% endif %}
-
-	{% if media.available %}
-		<p style="margin-top: 30px;">Enregistrer un emprunt. Si le champ est grisé, le membre possède trop d'emprunt ou a un emprunt en retard.</p>
-		<form style="margin-top: 5px;" method='post'>
-			{% csrf_token %}
-			<select>
-				{% for member in members %}
-					{% if member.bloque %}
-						<option disabled value={{member.id}}>{{ member.firstname }} - {{ member.lastname }}</option>
-					{% else %}
-						<option value={{member.id}}>{{ member.firstname }} - {{ member.lastname }}</option>
-					{% endif %}
-				{% endfor %}
-			</select>
-			<button type="submit">Enregistrer</button>
-		</form>
-
-	{% endif %}
-
 </body>
 </html>
