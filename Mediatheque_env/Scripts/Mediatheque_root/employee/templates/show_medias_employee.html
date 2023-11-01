@@ -13,21 +13,23 @@
 <ul style="display: flex; flex-direction: column; gap: 2rem;">
 
     {% for book in books %}
-    <div style="display: flex; justify-content: space-between; border-bottom: 2px solid black; padding-bottom: 5px;">
+        <div style="display: flex; justify-content: space-between; border-bottom: 2px solid black; padding-bottom: 5px;">
 
-        <li>{{book.name}} - {{book.author}}</li>
-        <div style="display: flex;">
-            <form method="post" action="{% url 'media_detail' 'book' book.id %}">
-                {% csrf_token %}
-                <input type="submit" value="Gestion">
-            </form>
-            <form method="post" action="{% url 'media_del' 'book' book.id %}">
-                {% csrf_token %}
-                <input type="submit" value="Supprimer">
-            </form>
+            <li>{{book.name}} - {{book.author}}</li>
+
+
+            <div style="display: flex;">
+                <form method="post" action="{% url 'media_detail' 'book' book.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Gestion">
+                </form>
+                <form method="post" action="{% url 'media_del' 'book' book.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Supprimer">
+                </form>
+            </div>
+
         </div>
-
-    </div>
     {% endfor %}
 
 </ul>
@@ -35,63 +37,69 @@
 <h2>Liste des cd disponible:</h2>
 <ul style="display: flex; flex-direction: column; gap: 2rem;">
     {% for cd in cds %}
-    <div style="display: flex; justify-content: space-between; border-bottom: 2px solid black; padding-bottom: 5px;">
+        <div style="display: flex; justify-content: space-between; border-bottom: 2px solid black; padding-bottom: 5px;">
 
-        <li>{{cd.name}} - {{cd.artist}}</li>
-        <div style="display: flex;">
-            <form method="post" action="{% url 'media_detail' 'cd' cd.id %}">
-                {% csrf_token %}
-                <input type="submit" value="Gestion">
-            </form>
-            <form method="post" action="{% url 'media_del' 'cd' cd.id %}">
-                {% csrf_token %}
-                <input type="submit" value="Supprimer">
-            </form>
+            <li>{{cd.name}} - {{cd.artist}}</li>
+            <div style="display: flex;">
+                <form method="post" action="{% url 'media_detail' 'cd' cd.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Gestion">
+                </form>
+                <form method="post" action="{% url 'media_del' 'cd' cd.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Supprimer">
+                </form>
+            </div>
+
         </div>
-
-    </div>
     {% endfor %}
 </ul>
 
 <h2>Liste des dvd disponible:</h2>
 <ul style="display: flex; flex-direction: column; gap: 2rem;">
     {% for dvd in dvds %}
-    <div style="display: flex; justify-content: space-between; border-bottom: 2px solid black; padding-bottom: 5px;">
+        <div
+        style="display:
+            flex; justify-content:
+            space-between;
+            border-bottom: 2px solid black;
+            padding-bottom: 5px;
+        ">
 
-        <li>{{dvd.name}} - {{dvd.realisator}}</li>
-        <div style="display: flex;">
-            <form method="post" action="{% url 'media_detail' 'dvd' dvd.id %}">
-                {% csrf_token %}
-                <input type="submit" value="Gestion">
-            </form>
-            <form method="post" action="{% url 'media_del' 'dvd' dvd.id %}">
-                {% csrf_token %}
-                <input type="submit" value="Supprimer">
-            </form>
+            <li>{{dvd.name}} - {{dvd.realisator}}</li>
+            <div style="display: flex;">
+                <form method="post" action="{% url 'media_detail' 'dvd' dvd.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Gestion">
+                </form>
+                <form method="post" action="{% url 'media_del' 'dvd' dvd.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Supprimer">
+                </form>
+            </div>
+
         </div>
-
-    </div>
     {% endfor %}
 </ul>
 
 <h2>Liste des jeux de plateau disponible:</h2>
 <ul style="display: flex; flex-direction: column; gap: 2rem;">
     {% for boardgame in boardgames %}
-    <div style="display: flex; justify-content: space-between; border-bottom: 2px solid black; padding-bottom: 5px;">
+        <div style="display: flex; justify-content: space-between; border-bottom: 2px solid black; padding-bottom: 5px;">
 
-        <li>{{boardgame.name}} - {{boardgame.author}}</li>
-        <div style="display: flex;">
-            <form method="post" action="{% url 'media_detail' 'boardgame' boardgame.id %}">
-                {% csrf_token %}
-                <input type="submit" value="Gestion">
-            </form>
-            <form method="post" action="{% url 'media_del' 'boardgame' boardgame.id %}">
-                {% csrf_token %}
-                <input type="submit" value="Supprimer">
-            </form>
+            <li>{{boardgame.name}} - {{boardgame.creator}}</li>
+            <div style="display: flex;">
+                <form method="post" action="{% url 'media_detail' 'boardgame' boardgame.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Gestion">
+                </form>
+                <form method="post" action="{% url 'media_del' 'boardgame' boardgame.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Supprimer">
+                </form>
+            </div>
+
         </div>
-
-    </div>
     {% endfor %}
 </ul>
 

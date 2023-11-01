@@ -73,6 +73,7 @@ def media_detail(request, media_type, media_id):
 
 
     template = loader.get_template("media_detail.html")
+    members = Member.objects.all().values()
 
     if media_type == "book":
         media = Book.objects.get(id=media_id)
@@ -92,7 +93,8 @@ def media_detail(request, media_type, media_id):
 
     context = {
         "media": media,
-        "type_media": type_media
+        "type_media": type_media,
+        "members": members
     }
 
     return HttpResponse(template.render(context, request))
