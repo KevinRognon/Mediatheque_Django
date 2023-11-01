@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détail média</title>
+</head>
+<body>
+
+    <a href="/employees/show-medias">Retour aux médias</a>
+
+	{% if type_media == "book" %}
+		<p>Titre du livre: <strong>{{ media.name }}</strong> </p>
+		<p>Nom de l'auteur: <strong>{{ media.author }}</strong></p>
+
+	{% elif type_media == "cd" %}
+		<p>Titre de l'album: <strong>{{ media.name }}</strong> </p>
+		<p>Nom du compositeur: <strong>{{ media.artist }}</strong></p>
+
+	{% elif type_media == "dvd" %}
+		<p>Nom du film: <strong>{{ media.name }}</strong> </p>
+		<p>Nom du réalisateur: <strong>{{ media.realisator }}</strong></p>
+	{% endif %}
+
+</body>
+</html>

@@ -8,7 +8,7 @@ urlpatterns = [
     path('show-members/', views.show_members, name="show_members"),
     path('show-medias/', views.show_medias, name="show_medias"),
     path('create-member/', views.create_member, name="create_member"),
-    path('detail/<int:id>', views.show_details, name="show_details"),
+    path('media-detail/<str:media_type>/<int:media_id>/', views.media_detail, name="media_detail"),
     path('delete-member/<int:member_id>/', views.delete_member, name="delete_member"),
     path('add-media', views.add_media, name="add_media")
 ]

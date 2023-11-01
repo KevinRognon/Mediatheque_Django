@@ -26,16 +26,6 @@ def show_members(request):
     return HttpResponse(template.render(context, request))
 
 
-def show_details(request, id):
-    member = Member.objects.get(id=id)
-    template = loader.get_template('detail.html')
-    member.check_borrowed_nb();
-    context = {
-        'member': member
-    }
-    return HttpResponse(template.render(context, request))
-
-
 
 def show_medias(request):
     books = Book.objects.all().values()
@@ -55,8 +45,54 @@ def show_medias(request):
 
 
 def add_media(request):
-    template = loader.get_template('add_media.html')
-    return HttpResponse(template.render())
+    template = 'add_media.html'
+
+    if request.method == "POST":
+        type_media = request.POST.get('type_media')
+        title = request.POST.get('title_media')
+        author_field = request.POST.get('author_media')
+
+        if type_media == "BOOK":
+            book = Book(name=title, author=author_field, available=True)
+            book.save()
+        elif type_media == "CD":
+            cd = Cd(name=title, artist=author_field, available=True)
+            cd.save()
+        elif type_media == "DVD":
+            dvd = Dvd(name=title, realisator=author_field, available=True)
+            dvd.save()
+        elif type_media == "BOARDGAME":
+            bg = BoardGame(name=title, creator=author_field)
+            bg.save()
+
+        return redirect("/employees/show-medias")
+
+    return render(request, template)
+
+def media_detail(request, media_type, media_id):
+
+
+    template = loader.get_template("media_detail.html")
+
+    if media_type == "book":
+        media = Book.objects.get(id=media_id)
+        type_media = media_type
+    elif media_type == "cd":
+        media = Cd.objects.get(id=media_id)
+        type_media = media_type
+    elif media_type == "dvd":
+        media = Dvd.objects.get(id=media_id)
+        type_media = media_type
+
+    else:
+        return HttpResponse("Type de média non reconnu.", status=400)
+
+    context = {
+        "media": media,
+        "type_media": type_media
+    }
+
+    return HttpResponse(template.render(context, request))
 
 
 
@@ -92,3 +128,5 @@ def delete_member(request, member_id):
         return redirect('show_members')
 
     return HttpResponse('Méthode non autorisée.')
+
+

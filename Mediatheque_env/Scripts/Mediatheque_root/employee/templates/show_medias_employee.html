@@ -6,33 +6,44 @@
 </head>
 <body>
 
-<a href="/employees">Retourner à au menu principal</a>
+<a href="/employees">Retourner à au menu principal</a> <br>
+<a href="/employees/add-media">Ajouter un média</a>
 
-<h2>Liste des livres en "stock":</h2>
-<ul>
+<h2>Liste des livres en stock:</h2>
+<ul style="display: flex; flex-direction: column; gap: 2rem;">
+
     {% for book in books %}
-        <li>{{book.name}}</li>
+    <div style="display: flex; justify-content: space-between; border-bottom: 2px solid black; padding-bottom: 5px;">
+
+        <li>{{book.name}} - {{book.author}}</li>
+        <form method="post" action="{% url 'media_detail' 'book' book.id %}">
+            {% csrf_token %}
+            <input type="submit" value="Gestion">
+        </form>
+
+    </div>
     {% endfor %}
+
 </ul>
 
-<h2>Liste des cd en "stock":</h2>
+<h2>Liste des cd en stock:</h2>
 <ul>
     {% for cd in cds %}
-        <li>{{cd.name}}</li>
+        <li style="text-decoration: underline;">{{cd.name}}</li>
     {% endfor %}
 </ul>
 
-<h2>Liste des dvd en "stock":</h2>
+<h2>Liste des dvd en stock:</h2>
 <ul>
     {% for dvd in dvds %}
-        <li>{{dvd.name}}</li>
+        <li style="text-decoration: underline;">{{dvd.name}}</li>
     {% endfor %}
 </ul>
 
-<h2>Liste des jeux de plateau en "stock":</h2>
+<h2>Liste des jeux de plateau en stock:</h2>
 <ul>
     {% for boardgame in boardgames %}
-        <li>{{boardgame.name}}</li>
+        <li style="text-decoration: underline;">{{boardgame.name}}</li>
     {% endfor %}
 </ul>
 
