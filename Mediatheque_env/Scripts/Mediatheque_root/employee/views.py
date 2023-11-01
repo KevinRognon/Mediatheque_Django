@@ -43,7 +43,7 @@ def show_medias(request):
     dvds = Dvd.objects.all().values()
     boardgames = BoardGame.objects.all().values()
 
-    template = loader.get_template('show_medias.html')
+    template = loader.get_template('show_medias_employee.html')
     context = {
         'books': books,
         'cds': cds,
