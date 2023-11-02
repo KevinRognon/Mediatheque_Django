@@ -132,17 +132,37 @@ def borrow_media(request, media_type, media_id):
 
     member_id = request.POST.get('selected_member')
     selected_member = Member.objects.get(id=member_id)
-    selected_member.check_borrowed_nb()
     if selected_member.bloque:
         return HttpResponse("Le membre est en défaut")
     else:
         media.available = False
         media.borrower = selected_member
-        selected_member.nb_borrowed += 1
         media.dateBorrow = datetime.today()
         media.save()
         selected_member.save()
+        selected_member.check_borrowed_nb()
         return redirect('/employees/show-medias')
+
+
+def validate_return(request, media_type, media_id):
+    media = ""
+    if media_type == "book":
+        media = Book.objects.get(id=media_id)
+    elif media_type == "cd":
+        media = Cd.objects.get(id=media_id)
+    elif media_type == "dvd":
+        media = Dvd.objects.get(id=media_id)
+
+    member_id = media.borrower.id
+    member = Member.objects.get(id=member_id)
+    media.dateBorrow = None
+    media.available = True
+    media.borrower = None
+    media.save()
+    member.check_borrowed_nb()
+    return redirect('/employees/show-medias')
+
+
 
 
 def create_member(request):
