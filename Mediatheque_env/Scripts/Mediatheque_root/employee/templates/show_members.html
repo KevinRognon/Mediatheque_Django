@@ -11,23 +11,30 @@
 
     <p>Voici la liste des membres de la médiathèque:</p>
 
-    <ul>
-        {% for member in members %}
-        <ul style="display: flex; gap: .4rem;">
-            {% if member.bloque == True or member.nb_borrowed == 3 %}
-            <li style="list-style: none; color: red;">{{ member.firstname }} {{ member.lastname }} | Nombre d'emprunt en cours: {{member.nb_borrowed}} | </li>
-            {% elif member.bloque == False and membre.nb_borrowed < 3 or member.nb_borrowed == 2 %}
-            <li style="list-style: none; color: orange;">{{ member.firstname }} {{ member.lastname }} | Nombre d'emprunt en cours: {{member.nb_borrowed}} | </li>
-            {% else %}
-            <li style="list-style: none; color: green;">{{ member.firstname }} {{ member.lastname }} | Nombre d'emprunt en cours: {{member.nb_borrowed}} | </li>
-            {% endif %}
+        <ul style="display: flex; flex-direction: column; gap: .4rem;">
+            {% for member in members %}
+                <div style="display: flex; justify-content: space-between; border-bottom: 2px solid black; padding: 10px;">
+                    {% if member.bloque == True or member.nb_borrowed == 3 %}
+                    <li style="list-style: none; color: red;">{{ member.firstname }} {{ member.lastname }} | Nombre d'emprunt en cours: {{member.nb_borrowed}} | </li>
+                    {% elif member.bloque == False and membre.nb_borrowed < 3 or member.nb_borrowed == 2 %}
+                    <li style="list-style: none; color: orange;">{{ member.firstname }} {{ member.lastname }} | Nombre d'emprunt en cours: {{member.nb_borrowed}} | </li>
+                    {% else %}
+                    <li style="list-style: none; color: green;">{{ member.firstname }} {{ member.lastname }} | Nombre d'emprunt en cours: {{member.nb_borrowed}} | </li>
+                    {% endif %}
 
-            <form method="post" action="{% url 'delete_member' member.id %}">
-                {% csrf_token %}
-                <input type="submit" value="X">
-            </form>
+                    <div style="display: flex;">
+                        <form>
+                            {% csrf_token %}
+                            <input type="submit" value="Gestion">
+                        </form>
+
+                        <form method="post" action="{% url 'delete_member' member.id %}">
+                            {% csrf_token %}
+                            <input type="submit" value="X">
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
         </ul>
-        {% endfor %}
-    </ul>
 </body>
 </html>

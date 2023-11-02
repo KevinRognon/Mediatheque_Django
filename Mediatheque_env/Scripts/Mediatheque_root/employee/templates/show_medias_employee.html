@@ -20,6 +20,10 @@
                     <div style="width: 20px; height: 20px; background-color: red;">
 
                     </div>
+                {% else %}
+                    <div style="width: 20px; height: 20px; background-color: green;">
+
+                    </div>
                 {% endif %}
 
                 <li>{{book.name}} - {{book.author}}</li>
@@ -54,6 +58,10 @@
             <div style="display: flex; align-items: center; gap: 2rem;">
                 {% if not cd.available %}
                     <div style="width: 20px; height: 20px; background-color: red;">
+
+                    </div>
+                {% else %}
+                    <div style="width: 20px; height: 20px; background-color: green;">
 
                     </div>
                 {% endif %}
@@ -94,6 +102,10 @@
             <div style="display: flex; align-items: center; gap: 2rem;">
                 {% if not dvd.available %}
                     <div style="width: 20px; height: 20px; background-color: red;">
+
+                    </div>
+                {% else %}
+                    <div style="width: 20px; height: 20px; background-color: green;">
 
                     </div>
                 {% endif %}
