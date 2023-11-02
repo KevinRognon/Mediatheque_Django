@@ -127,16 +127,22 @@ def borrow_media(request, media_type, media_id):
         media = Dvd.objects.get(id=media_id)
 
     #     Vérifier car le formulaire n'est pas visible si le média n'est pas disponible.
-    #     if not media.available:
-    #         return HttpResponse("Ce média est déjà emprunté")
+    if not media.available:
+        return HttpResponse("Ce média est déjà emprunté")
 
     member_id = request.POST.get('selected_member')
     selected_member = Member.objects.get(id=member_id)
-    media.available = False
-    media.borrower = selected_member
-    media.dateBorrow = datetime.today()
-    media.save()
-    return redirect('/employees/show-medias')
+    selected_member.check_borrowed_nb()
+    if selected_member.bloque:
+        return HttpResponse("Le membre est en défaut")
+    else:
+        media.available = False
+        media.borrower = selected_member
+        selected_member.nb_borrowed += 1
+        media.dateBorrow = datetime.today()
+        media.save()
+        selected_member.save()
+        return redirect('/employees/show-medias')
 
 
 def create_member(request):
