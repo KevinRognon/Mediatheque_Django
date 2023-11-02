@@ -27,7 +27,6 @@ def show_members(request):
     return HttpResponse(template.render(context, request))
 
 
-
 def show_medias(request):
     books = Book.objects.all().values()
     cds = Cd.objects.all().values()
@@ -70,9 +69,8 @@ def add_media(request):
 
     return render(request, template)
 
+
 def media_detail(request, media_type, media_id):
-
-
     template = loader.get_template("media_detail.html")
     members = Member.objects.all().values()
 
@@ -100,8 +98,8 @@ def media_detail(request, media_type, media_id):
 
     return HttpResponse(template.render(context, request))
 
-def media_del(request, media_type, media_id):
 
+def media_del(request, media_type, media_id):
     if media_type == "book":
         media = Book.objects.get(id=media_id)
         media.delete()
@@ -128,19 +126,17 @@ def borrow_media(request, media_type, media_id):
     elif media_type == "dvd":
         media = Dvd.objects.get(id=media_id)
 
-#     Vérifier car le formulaire n'est pas visible si le média n'est pas disponible.
-#     if not media.available:
-#         return HttpResponse("Ce média est déjà emprunté")
-
+    #     Vérifier car le formulaire n'est pas visible si le média n'est pas disponible.
+    #     if not media.available:
+    #         return HttpResponse("Ce média est déjà emprunté")
 
     member_id = request.POST.get('selected_member')
     selected_member = Member.objects.get(id=member_id)
     media.available = False
     media.borrower = selected_member
-    media.dateBorrow = datetime.date.today()
+    media.dateBorrow = datetime.today()
     media.save()
     return redirect('/employees/show-medias')
-
 
 
 def create_member(request):
@@ -174,5 +170,3 @@ def delete_member(request, member_id):
         return redirect('show_members')
 
     return HttpResponse('Méthode non autorisée.')
-
-

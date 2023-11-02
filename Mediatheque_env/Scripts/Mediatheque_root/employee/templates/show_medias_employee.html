@@ -15,7 +15,15 @@
     {% for book in books %}
         <div style="display: flex; justify-content: space-between; border-bottom: 2px solid black; padding-bottom: 5px;">
 
-            <li>{{book.name}} - {{book.author}}</li>
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                {% if not book.available %}
+                    <div style="width: 20px; height: 20px; background-color: red;">
+
+                    </div>
+                {% endif %}
+
+                <li>{{book.name}} - {{book.author}}</li>
+            </div>
 
 
             <div style="display: flex;">
@@ -39,7 +47,16 @@
     {% for cd in cds %}
         <div style="display: flex; justify-content: space-between; border-bottom: 2px solid black; padding-bottom: 5px;">
 
-            <li>{{cd.name}} - {{cd.artist}}</li>
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                {% if not cd.available %}
+                    <div style="width: 20px; height: 20px; background-color: red;">
+
+                    </div>
+                {% endif %}
+
+                <li>{{cd.name}} - {{cd.artist}}</li>
+            </div>
+
             <div style="display: flex;">
                 <form method="post" action="{% url 'media_detail' 'cd' cd.id %}">
                     {% csrf_token %}
@@ -66,7 +83,16 @@
             padding-bottom: 5px;
         ">
 
-            <li>{{dvd.name}} - {{dvd.realisator}}</li>
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                {% if not dvd.available %}
+                    <div style="width: 20px; height: 20px; background-color: red;">
+
+                    </div>
+                {% endif %}
+
+                <li>{{dvd.name}} - {{dvd.realisator}}</li>
+            </div>
+
             <div style="display: flex;">
                 <form method="post" action="{% url 'media_detail' 'dvd' dvd.id %}">
                     {% csrf_token %}
