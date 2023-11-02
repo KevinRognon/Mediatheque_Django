@@ -132,8 +132,11 @@ def borrow_media(request, media_type, media_id):
 
     member_id = request.POST.get('selected_member')
     selected_member = Member.objects.get(id=member_id)
+
     if selected_member.bloque:
         return HttpResponse("Le membre est en défaut")
+    elif not selected_member.has_overdue_items:
+        return HttpResponse("Le membre a un ou des emprunts en retard.")
     else:
         media.available = False
         media.borrower = selected_member

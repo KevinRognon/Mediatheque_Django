@@ -1,7 +1,6 @@
 from django.db import models
+from datetime import date, timedelta
 
-
-# Create your models here.
 
 class Member(models.Model):
     firstname = models.CharField(max_length=45)
@@ -31,3 +30,21 @@ class Member(models.Model):
         self.nb_borrowed = total_borrowed
         self.save()
         print(self.bloque)
+
+    def has_overdue_items(self):
+        today = date.today()
+        one_week_ago = today - timedelta(days=7)
+
+        # Vérifiez les livres
+        if self.book_set.filter(dateBorrow__lt=one_week_ago).exists():
+            return True
+
+        # Vérifiez les CDs
+        if self.cd_set.filter(dateBorrow__lt=one_week_ago).exists():
+            return True
+
+        # Vérifiez les DVDs
+        if self.dvd_set.filter(dateBorrow__lt=one_week_ago).exists():
+            return True
+
+        return False
