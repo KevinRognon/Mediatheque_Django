@@ -163,7 +163,7 @@ def validate_return(request, media_type, media_id):
     media.borrower = None
     media.save()
     member.check_borrowed_nb()
-    return redirect('/employees/show-medias')
+    return redirect('/employees/member-detail/' + str(member.id))
 
 
 
@@ -203,4 +203,18 @@ def delete_member(request, member_id):
 
 def member_detail(request, member_id):
     member = Member.objects.get(pk=member_id)
-    template = loader.get_template()
+    borrowed_books = member.book_set.all()
+    borrowed_cds = member.cd_set.all()
+    borrowed_dvds = member.dvd_set.all()
+    
+
+    template = 'member_detail.html'
+    
+    context = {
+        'member': member,
+        'borrowed_books': borrowed_books,
+        'borrowed_cds': borrowed_cds,
+        'borrowed_dvds': borrowed_dvds,
+    }
+    
+    return render(request, template, context)
