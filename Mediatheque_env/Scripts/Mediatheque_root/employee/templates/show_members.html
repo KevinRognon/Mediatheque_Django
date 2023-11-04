@@ -23,7 +23,7 @@
                     {% endif %}
 
                     <div style="display: flex;">
-                        <form>
+                        <form method="post" action="{% url 'member_detail' member.id %}">
                             {% csrf_token %}
                             <input type="submit" value="Gestion">
                         </form>

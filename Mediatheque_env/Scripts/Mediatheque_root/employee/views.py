@@ -199,3 +199,8 @@ def delete_member(request, member_id):
         return redirect('show_members')
 
     return HttpResponse('Méthode non autorisée.')
+
+
+def member_detail(request, member_id):
+    member = Member.objects.get(pk=member_id)
+    template = loader.get_template()
