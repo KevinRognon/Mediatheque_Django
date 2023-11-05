@@ -35,10 +35,6 @@
                     {% csrf_token %}
                     <input type="submit" value="Gestion">
                 </form>
-                <form method="post" action="{% url 'validate_return' 'book' book.id %}">
-                    {% csrf_token %}
-                    <input type="submit" value="Valider retour">
-                </form>
                 <form method="post" action="{% url 'media_del' 'book' book.id %}">
                     {% csrf_token %}
                     <input type="submit" value="Supprimer">
@@ -73,10 +69,6 @@
                 <form method="post" action="{% url 'media_detail' 'cd' cd.id %}">
                     {% csrf_token %}
                     <input type="submit" value="Gestion">
-                </form>
-                <form method="post" action="{% url 'validate_return' 'cd' cd.id %}">
-                    {% csrf_token %}
-                    <input type="submit" value="Valider retour">
                 </form>
                 <form method="post" action="{% url 'media_del' 'cd' cd.id %}">
                     {% csrf_token %}
@@ -117,10 +109,6 @@
                 <form method="post" action="{% url 'media_detail' 'dvd' dvd.id %}">
                     {% csrf_token %}
                     <input type="submit" value="Gestion">
-                </form>
-                <form method="post" action="{% url 'validate_return' 'dvd' dvd.id %}">
-                    {% csrf_token %}
-                    <input type="submit" value="Valider retour">
                 </form>
                 <form method="post" action="{% url 'media_del' 'dvd' dvd.id %}">
                     {% csrf_token %}

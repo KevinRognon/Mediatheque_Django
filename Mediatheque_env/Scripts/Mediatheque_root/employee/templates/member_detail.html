@@ -5,6 +5,7 @@
     <title>{{ member.firstname }} {{ member.lastname }}</title>
 </head>
 <body>
+  <a href="/employees/show-members">Retour aux membres</a>
   <h2>{{ member.firstname }} {{ member.lastname }}</h2>
 
   <h2>Livres empruntés</h2>
@@ -31,6 +32,10 @@
     {% for cd in borrowed_cds %}
   
       <li>{{ cd.name }} - {{ cd.artist }}. Date d'emprunt: {{ cd.dateBorrow }}</li>
+      <form method="post" action="{% url 'validate_return' 'cd' cd.id %}">
+        {% csrf_token %}
+        <input type="submit" value="Retour">
+      </form>
     
     {% empty %}
     
@@ -44,6 +49,10 @@
     {% for dvd in borrowed_dvds %}
   
       <li>{{ dvd.name }} - {{ dvd.realisator }}. Date d'emprunt: {{ dvd.dateBorrow }}</li>
+      <form method="post" action="{% url 'validate_return' 'dvd' dvd.id %}">
+        {% csrf_token %}
+        <input type="submit" value="Retour">
+      </form>
     
     {% empty %}
     
