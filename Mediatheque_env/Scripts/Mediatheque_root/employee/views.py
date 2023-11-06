@@ -10,12 +10,8 @@ from datetime import datetime
 
 
 def employee(request):
-    employees = Employe.objects.all().values
-    template = loader.get_template('employe.html')
-    context = {
-        'employees': employees
-    }
-    return HttpResponse(template.render(context, request))
+    template = 'employe.html'
+    return render(request, template)
 
 
 def show_members(request):

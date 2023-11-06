@@ -3,6 +3,6 @@ from django.shortcuts import redirect
 from . import views
 
 urlpatterns = [
-    path('', lambda request: redirect('/show_medias'), name="member"),
-    path('show_medias', views.show_medias, name="show_medias")
+    path('', lambda request: redirect('/show_medias_member'), name="member"),
+    path('show_medias_member', views.show_medias_member, name="show_medias_member")
 ]

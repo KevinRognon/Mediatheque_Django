@@ -4,7 +4,7 @@ from Mediatheque_root.models import Book, Cd, Dvd, BoardGame
 
 # Create your views here.
 
-def show_medias(request):
+def show_medias_member(request):
     books = Book.objects.all().values()
     cds = Cd.objects.all().values()
     dvds = Dvd.objects.all().values()
