@@ -113,3 +113,25 @@ class TestAddMedia(TestCase):
         new_boardgame = BoardGame.objects.first()
         self.assertEqual(new_boardgame.name, 'Banque Route')
         self.assertEqual(new_boardgame.creator, 'Alpaga')
+
+
+class TestCreateMember(TestCase):
+    def setUp(self):
+        self.client = Client()
+        
+        self.create_member_url = reverse('create_member')
+    
+    def test_create_member(self):
+        response = self.client.post(self.create_member_url, {
+            'first_name': 'Kevin',
+            'last_name': 'Rognon'
+        })
+        
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('show_members'))
+        self.assertEqual(Member.objects.count(), 1)
+        new_member = Member.objects.first()
+        self.assertEqual(new_member.firstname, 'Kevin')
+        self.assertEqual(new_member.lastname, 'Rognon')
+        self.assertEqual(new_member.bloque, False)
+        self.assertEqual(new_member.nb_borrowed, 0)
