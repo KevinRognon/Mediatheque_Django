@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ member.firstname }} {{ member.lastname }}</title>
+</head>
+<body>
+  <a href="/employees/show-members">Retour aux membres</a>
+  <h2>{{ member.firstname }} {{ member.lastname }}</h2>
+
+  <h2>Livres empruntés</h2>
+  <ul>
+    {% for book in borrowed_books %}
+  
+      <li>
+        {{ book.name }} - {{ book.author }}. Date d'emprunt: {{ book.dateBorrow }}
+        <form method="post" action="{% url 'validate_return' 'book' book.id %}">
+          {% csrf_token %}
+          <input type="submit" value="Retour">
+        </form>
+      </li>
+    
+    {% empty %}
+    
+      <li>Aucun livre emprunté.</li>
+
+    {% endfor %}
+  </ul>
+
+  <h2>Cd empruntés</h2>
+  <ul>
+    {% for cd in borrowed_cds %}
+  
+      <li>{{ cd.name }} - {{ cd.artist }}. Date d'emprunt: {{ cd.dateBorrow }}</li>
+      <form method="post" action="{% url 'validate_return' 'cd' cd.id %}">
+        {% csrf_token %}
+        <input type="submit" value="Retour">
+      </form>
+    
+    {% empty %}
+    
+      <li>Aucun livre emprunté.</li>
+
+    {% endfor %}
+  </ul>
+
+  <h2>Dvd empruntés</h2>
+  <ul>
+    {% for dvd in borrowed_dvds %}
+  
+      <li>{{ dvd.name }} - {{ dvd.realisator }}. Date d'emprunt: {{ dvd.dateBorrow }}</li>
+      <form method="post" action="{% url 'validate_return' 'dvd' dvd.id %}">
+        {% csrf_token %}
+        <input type="submit" value="Retour">
+      </form>
+    
+    {% empty %}
+    
+      <li>Aucun livre emprunté.</li>
+
+    {% endfor %}
+  </ul>
+  
+</body>
+</html>

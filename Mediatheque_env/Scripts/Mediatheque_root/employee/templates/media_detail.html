@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détail média</title>
+</head>
+<body>
+
+    <a href="/employees/show-medias">Retour aux médias</a>
+
+
+
+	{% if type_media == "book" %}
+
+
+		<p>Titre du livre: <strong>{{ media.name }}</strong> </p>
+		<p>Nom de l'auteur: <strong>{{ media.author }}</strong></p>
+		{% if media.available %}
+			<p style="background-color: green; color: white; display: inline; padding: 10px;">Le média est disponible</p>
+		{% elif not media.available %}
+			<p style="background-color: red; color: white; display: inline; padding: 10px;">Le média n'est pas disponible</p>
+		{% endif %}
+
+		{% if media.available %}
+			<form style="margin-top: 30px;" method='post' action="{% url 'borrow_media' 'book' media.id %}">
+				{% csrf_token %}
+				<select name="selected_member">
+					{% for member in members %}
+						{% if member.bloque %}
+							<option disabled value={{member.id}}>{{ member.firstname }} {{ member.lastname }} - Emprunt: {{ member.nb_borrowed }}</option>
+						{% else %}
+							<option name="choix_membre" value={{member.id}}>{{ member.firstname }} {{ member.lastname }} - Emprunt: {{ member.nb_borrowed }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+				<button type="submit">Emprunter</button>
+			</form>
+		{% endif %}
+
+	{% elif type_media == "cd" %}
+
+
+		<p>Titre de l'album: <strong>{{ media.name }}</strong> </p>
+		<p>Nom du compositeur: <strong>{{ media.artist }}</strong></p>
+		{% if media.available %}
+			<p style="background-color: green; color: white; display: inline; padding: 10px;">Le média est disponible</p>
+		{% elif not media.available %}
+			<p style="background-color: red; color: white; display: inline; padding: 10px;">Le média n'est pas disponible</p>
+		{% endif %}
+
+		{% if media.available %}
+			<form style="margin-top: 30px;" method='post' action="{% url 'borrow_media' 'cd' media.id %}">
+				{% csrf_token %}
+				<select name="selected_member">
+					{% for member in members %}
+						{% if member.bloque %}
+							<option disabled value={{member.id}}>{{ member.firstname }} {{ member.lastname }} - Emprunt: {{ member.nb_borrowed }}</option>
+						{% else %}
+							<option name="choix_membre" value={{member.id}}>{{ member.firstname }} {{ member.lastname }} - Emprunt: {{ member.nb_borrowed }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+				<button type="submit">Emprunter</button>
+			</form>
+		{% endif %}
+
+	{% elif type_media == "dvd" %}
+
+
+		<p>Nom du film: <strong>{{ media.name }}</strong> </p>
+		<p>Nom du réalisateur: <strong>{{ media.realisator }}</strong></p>
+		{% if media.available %}
+			<p style="background-color: green; color: white; display: inline; padding: 10px;">Le média est disponible</p>
+		{% elif not media.available %}
+			<p style="background-color: red; color: white; display: inline; padding: 10px;">Le média n'est pas disponible</p>
+		{% endif %}
+
+		{% if media.available %}
+			<form style="margin-top: 30px;" method='post' action="{% url 'borrow_media' 'dvd' media.id %}">
+				{% csrf_token %}
+				<select name="selected_member">
+					{% for member in members %}
+						{% if member.bloque %}
+							<option disabled value={{member.id}}>{{ member.firstname }} {{ member.lastname }} - Emprunt: {{ member.nb_borrowed }}</option>
+						{% else %}
+							<option name="choix_membre" value={{member.id}}>{{ member.firstname }} {{ member.lastname }} - Emprunt: {{ member.nb_borrowed }}</option>
+						{% endif %}
+					{% endfor %}
+				</select>
+				<button type="submit">Emprunter</button>
+			</form>
+		{% endif %}
+
+	{% elif type_media == "boardgame" %}
+
+
+		<p>Nom du jeu: <strong>{{ media.name }}</strong> </p>
+		<p>Nom du créateur: <strong>{{ media.creator }}</strong></p>
+
+
+	{% endif %}
+</body>
+</html>
